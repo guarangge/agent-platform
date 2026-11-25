@@ -1,0 +1,9 @@
+{
+  "workflowCodes": [
+    "gaokao_consult_orchestration_v1",
+    "gaokao_plan_generation_workflow_v1",
+    "gaokao_plan_review_workflow_v1",
+    "gaokao_replan_workflow_v1",
+    "gaokao_policy_qa_workflow_v1"
+  ]
+}

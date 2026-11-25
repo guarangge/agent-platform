@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.zc.agent</groupId>
+    <artifactId>agent-platform</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>agent-platform</name>
+    <description>General Agent Platform</description>
+
+    <modules>
+        <module>agent-runtime-sdk-java</module>
+        <module>agent-runtime-sdk-java-example</module>
+        <module>agent-core</module>
+        <module>agent-tool-plugin-gaokao</module>
+        <module>agent-tool-plugin-image</module>
+        <module>registry-center</module>
+    </modules>
+</project>

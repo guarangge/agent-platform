@@ -1,0 +1,4 @@
+export interface WorkerGroup{id:number;groupCode:string;groupName:string;maxConcurrency:number;queueCapacity:number;requiredCapabilities:string[];status:string;queuedCount:number;runningCount:number;onlineWorkerCount:number;oldestQueuedAt:string|null}
+export interface WorkerNode{id:number;workerId:string;groupCode:string;instanceAddress:string;capabilities:string[];maxConcurrency:number;currentLoad:number;status:string;startedAt:string;lastHeartbeatAt:string;stoppedAt:string|null}
+export interface RoutingRule{id:number;ruleCode:string;ruleName:string;agentId:number|null;minPriority:number|null;maxPriority:number|null;requiredCapabilities:string[];targetGroupCode:string;priority:number;status:string}
+export interface ControlDashboard{groups:WorkerGroup[];nodes:WorkerNode[];nodeStatusCounts:Record<string,number>}

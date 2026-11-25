@@ -1,0 +1,10 @@
+{
+  "toolScopeMode": "custom",
+  "toolCodes": [
+    "DOC_SEARCH",
+    "SCORE_ANALYSIS",
+    "GAOKAO_POLICY_SEARCH",
+    "GAOKAO_UNIVERSITY_SEARCH",
+    "GAOKAO_MAJOR_SEARCH"
+  ]
+}

@@ -1,0 +1,107 @@
+{
+  "toolCode": "DOC_SEARCH",
+  "toolName": "高考知识与文档综合检索",
+  "toolType": "search",
+  "toolCategory": "education",
+  "description": "优先检索高考知识库和高考文档目录，未命中时再补充项目通用文档检索结果。",
+  "providerCode": "internal_platform_provider",
+  "providerName": "平台内置 Provider",
+  "providerType": "internal",
+  "transportType": "in_process",
+  "providerConfigSchema": {},
+  "providerStatus": "enabled",
+  "providerInstanceCode": "internal_platform_default",
+  "providerInstanceName": "平台内置默认实例",
+  "environmentCode": "default",
+  "endpoint": "",
+  "authType": "none",
+  "authConfig": {},
+  "headers": {},
+  "providerTimeoutSeconds": 30,
+  "retryTimes": 0,
+  "providerInstanceStatus": "enabled",
+  "operationName": "DOC_SEARCH",
+  "operationType": "internal_method",
+  "bindingStatus": "enabled",
+  "invokeConfig": {},
+  "argumentMapping": {},
+  "outputMapping": {},
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "query": {
+        "type": "string",
+        "description": "检索问题或关键词"
+      }
+    },
+    "required": [
+      "query"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "keywords": {
+        "type": "array"
+      },
+      "gaokaoQuery": {
+        "type": "boolean"
+      },
+      "hits": {
+        "type": "array"
+      },
+      "policyHits": {
+        "type": "array"
+      },
+      "universityHits": {
+        "type": "array"
+      },
+      "majorHits": {
+        "type": "array"
+      }
+    }
+  },
+  "permissionLevel": "default",
+  "timeoutSeconds": 30,
+  "status": "enabled",
+  "metadata": {
+    "promptRefs": {
+      "executionPromptId": 41
+    },
+    "routing": {
+      "capabilities": [
+        "检索高考政策知识库",
+        "检索高考文档目录",
+        "补充项目通用文档命中结果"
+      ],
+      "triggerConditions": [
+        "用户询问平行志愿、调剂、专业组等政策问题",
+        "用户需要依据文档解释高考志愿填报规则",
+        "用户要求检索院校或专业说明"
+      ],
+      "limitations": [
+        "知识库不是官方实时数据库",
+        "最终仍需以当年官方政策和学校招生章程为准"
+      ],
+      "inputPrerequisites": [
+        "最好包含省份、专业、政策或院校关键词"
+      ],
+      "sideEffects": "只读检索",
+      "riskNotes": [
+        "若高考文档目录为空，则主要依赖内置知识库",
+        "项目通用 docs 仅作为兜底补充"
+      ]
+    },
+    "guardrails": {
+      "blockedKeywords": [],
+      "maxInputLength": 5000
+    },
+    "approval": {
+      "required": false,
+      "mode": "always",
+      "keywords": [],
+      "reason": ""
+    }
+  },
+  "remark": "高考场景优先检索 Tool"
+}

@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>通用 Agent 平台 MVP 页面原型</title>
+    <style>
+      :root {
+        color: #1b2a3a;
+        background: #edf3f8;
+        font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-width: 1280px;
+        background:
+          radial-gradient(circle at top right, rgba(41, 93, 143, 0.12), transparent 30%),
+          linear-gradient(180deg, #f7fafc 0%, #edf3f8 100%);
+      }
+
+      .page {
+        padding: 32px;
+      }
+
+      .hero {
+        display: flex;
+        justify-content: space-between;
+        gap: 24px;
+        padding: 28px 30px;
+        border: 1px solid #d6e0ea;
+        border-radius: 24px;
+        background: rgba(255, 255, 255, 0.92);
+        box-shadow: 0 16px 40px rgba(23, 50, 77, 0.08);
+      }
+
+      .tag {
+        display: inline-flex;
+        padding: 6px 12px;
+        border-radius: 999px;
+        background: #dceaf8;
+        color: #244f74;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 14px 0 10px;
+        font-size: 36px;
+        color: #17324d;
+      }
+
+      .hero p {
+        max-width: 760px;
+        margin: 0;
+        color: #556c81;
+        line-height: 1.8;
+      }
+
+      .hero-note {
+        padding: 10px 14px;
+        border: 1px solid #d6e0ea;
+        border-radius: 14px;
+        background: #f8fbfe;
+        color: #52687e;
+        font-size: 13px;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 22px;
+        margin-top: 24px;
+      }
+
+      .card {
+        padding: 18px;
+        border: 1px solid #d4dfec;
+        border-radius: 24px;
+        background: #ffffff;
+        box-shadow: 0 18px 40px rgba(28, 54, 84, 0.08);
+      }
+
+      .full {
+        grid-column: span 2;
+      }
+
+      .card-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 14px;
+      }
+
+      .num {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        background: #dceaf8;
+        color: #20496e;
+        font-weight: 700;
+      }
+
+      .card-header h2 {
+        margin: 0;
+        font-size: 22px;
+        color: #193650;
+      }
+
+      .frame {
+        overflow: hidden;
+        border: 1px solid #d6e0ea;
+        border-radius: 18px;
+        background: #f8fbfe;
+      }
+
+      .login {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        min-height: 420px;
+      }
+
+      .login-brand {
+        padding: 40px 42px;
+        background: linear-gradient(135deg, #e4eef8, #f7fbff);
+      }
+
+      .logo {
+        width: 56px;
+        height: 56px;
+        border-radius: 16px;
+        background: linear-gradient(135deg, #295d8f, #6da7d9);
+      }
+
+      .login-brand h3 {
+        margin: 18px 0 10px;
+        font-size: 28px;
+        color: #15324d;
+      }
+
+      .login-brand p,
+      .login-brand li {
+        color: #567188;
+        line-height: 1.8;
+      }
+
+      .login-brand ul {
+        margin: 18px 0 0;
+        padding-left: 20px;
+      }
+
+      .login-form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 18px;
+        padding: 44px;
+        background: #ffffff;
+      }
+
+      .field-label {
+        color: #5b7186;
+        font-size: 14px;
+      }
+
+      .input {
+        height: 44px;
+        margin-top: 8px;
+        border: 1px solid #d6e0ea;
+        border-radius: 12px;
+        background: #f7fafc;
+      }
+
+      .inline {
+        display: flex;
+        justify-content: space-between;
+        color: #5b7186;
+        font-size: 14px;
+      }
+
+      .btn-row {
+        display: flex;
+        gap: 12px;
+      }
+
+      .btn {
+        height: 40px;
+        padding: 0 18px;
+        border: 0;
+        border-radius: 12px;
+        font-weight: 700;
+      }
+
+      .btn.primary {
+        background: #1c6ed3;
+        color: #ffffff;
+      }
+
+      .btn.ghost {
+        background: #ebf2f8;
+        color: #37526d;
+      }
+
+      .app {
+        display: grid;
+        grid-template-columns: 180px 1fr 260px;
+        min-height: 440px;
+      }
+
+      .sidebar {
+        padding: 18px;
+        border-right: 1px solid #d6e0ea;
+        background: linear-gradient(180deg, #edf4fa, #f9fbfd);
+      }
+
+      .sidebar strong,
+      .panel-title {
+        color: #24435e;
+      }
+
+      .sidebar ul {
+        margin: 18px 0 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .sidebar li {
+        margin-bottom: 8px;
+        padding: 10px 12px;
+        border-radius: 12px;
+        color: #567087;
+      }
+
+      .sidebar li.active {
+        background: #dceaf8;
+        color: #1c4b75;
+        font-weight: 700;
+      }
+
+      .content {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        padding: 18px;
+      }
+
+      .topbar,
+      .toolbar,
+      .chat-topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .topbar,
+      .chat-topbar {
+        padding: 12px 14px;
+        border: 1px solid #d6e0ea;
+        border-radius: 14px;
+        background: #ffffff;
+        color: #4d657c;
+      }
+
+      .stats,
+      .quick {
+        display: grid;
+        gap: 12px;
+      }
+
+      .stats {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .quick {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+      }
+
+      .stat,
+      .quick-card,
+      .panel,
+      .drawer {
+        padding: 16px;
+        border: 1px solid #d6e0ea;
+        border-radius: 16px;
+        background: #ffffff;
+      }
+
+      .stat-value {
+        font-size: 24px;
+        font-weight: 800;
+        color: #17334e;
+      }
+
+      .stat-label,
+      .quick-card {
+        color: #546b81;
+      }
+
+      .quick-card {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 86px;
+        font-weight: 700;
+      }
+
+      .lines {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 14px;
+      }
+
+      .lines span,
+      .drawer-lines span {
+        display: block;
+        height: 42px;
+        border-radius: 12px;
+        background: linear-gradient(90deg, #eef4f9, #f8fbfd);
+      }
+
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .chip {
+        display: inline-flex;
+        align-items: center;
+        height: 34px;
+        padding: 0 12px;
+        border: 1px solid #d6e0ea;
+        border-radius: 999px;
+        background: #ffffff;
+        color: #547084;
+        font-size: 13px;
+      }
+
+      .table {
+        overflow: hidden;
+        border: 1px solid #d6e0ea;
+        border-radius: 16px;
+        background: #ffffff;
+      }
+
+      .table-head,
+      .table-row {
+        display: grid;
+        gap: 12px;
+        padding: 14px 16px;
+        font-size: 13px;
+        color: #536c82;
+      }
+
+      .table-head {
+        border-bottom: 1px solid #e6edf3;
+        background: #f7fafc;
+        font-weight: 700;
+      }
+
+      .table-row + .table-row {
+        border-top: 1px solid #eef3f7;
+      }
+
+      .cols-6 {
+        grid-template-columns: 1.2fr 1.2fr 0.8fr 0.8fr 1fr 1.6fr;
+      }
+
+      .cols-4 {
+        grid-template-columns: 1.4fr 0.8fr 0.8fr 1.2fr;
+      }
+
+      .status {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 50px;
+        height: 24px;
+        border-radius: 999px;
+        font-style: normal;
+        font-weight: 700;
+      }
+
+      .status.on {
+        background: #dff3e4;
+        color: #24663b;
+      }
+
+      .status.draft {
+        background: #fdf1cc;
+        color: #8a6712;
+      }
+
+      .drawer {
+        border-left: 1px solid #d6e0ea;
+        border-radius: 0;
+      }
+
+      .drawer-lines {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 16px;
+      }
+
+      .workflow {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        min-height: 440px;
+      }
+
+      .pane {
+        padding: 18px;
+      }
+
+      .pane.border-left {
+        border-left: 1px solid #d6e0ea;
+        background: #ffffff;
+      }
+
+      .nodes {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 14px;
+        margin-top: 20px;
+      }
+
+      .node {
+        min-width: 160px;
+        padding: 12px 18px;
+        border: 1px solid #cfdcea;
+        border-radius: 14px;
+        text-align: center;
+        font-weight: 700;
+        color: #2d4d69;
+        background: #f9fbfd;
+      }
+
+      .node.start,
+      .node.end {
+        background: #dceaf8;
+      }
+
+      .node.condition {
+        background: #fff5d8;
+      }
+
+      .prompt {
+        display: grid;
+        grid-template-columns: 280px 1fr;
+        min-height: 440px;
+      }
+
+      .prompt-list {
+        padding: 18px;
+        border-right: 1px solid #d6e0ea;
+        background: linear-gradient(180deg, #edf4fa, #f9fbfd);
+      }
+
+      .prompt-item {
+        margin-top: 12px;
+        padding: 12px 14px;
+        border-radius: 12px;
+        color: #577086;
+      }
+
+      .prompt-item.active {
+        background: #dceaf8;
+        color: #1d4d75;
+        font-weight: 700;
+      }
+
+      .editor {
+        padding: 18px;
+        background: #ffffff;
+      }
+
+      .editor-meta {
+        display: flex;
+        gap: 10px;
+        margin: 14px 0;
+      }
+
+      .editor-area {
+        min-height: 250px;
+        padding: 16px;
+        border: 1px solid #d6e0ea;
+        border-radius: 16px;
+        background: #f8fbfe;
+        color: #567085;
+        line-height: 1.8;
+      }
+
+      .chat {
+        display: grid;
+        grid-template-columns: 260px 1fr;
+        min-height: 500px;
+      }
+
+      .chat-list {
+        padding: 18px;
+        border-right: 1px solid #d6e0ea;
+        background: linear-gradient(180deg, #edf4fa, #f9fbfd);
+      }
+
+      .chat-item {
+        margin-top: 12px;
+        padding: 12px 14px;
+        border-radius: 12px;
+        color: #567085;
+        background: rgba(255, 255, 255, 0.6);
+      }
+
+      .chat-item.active {
+        background: #dceaf8;
+        color: #204b73;
+        font-weight: 700;
+      }
+
+      .chat-main {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        padding: 18px;
+      }
+
+      .messages {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        gap: 12px;
+        padding: 16px;
+        border: 1px solid #d6e0ea;
+        border-radius: 16px;
+        background: #ffffff;
+      }
+
+      .message {
+        max-width: 70%;
+        padding: 12px 14px;
+        border-radius: 14px;
+        line-height: 1.7;
+      }
+
+      .message.user {
+        align-self: flex-end;
+        background: #dceaf8;
+        color: #1a456d;
+      }
+
+      .message.bot {
+        align-self: flex-start;
+        background: #eef4f8;
+        color: #4a647a;
+      }
+
+      .message.subtle {
+        background: #f7fafc;
+        color: #6a7d8f;
+        font-size: 13px;
+      }
+
+      .chat-input {
+        padding: 16px;
+        border: 1px solid #d6e0ea;
+        border-radius: 16px;
+        background: #ffffff;
+      }
+
+      .textarea {
+        min-height: 92px;
+        margin-bottom: 14px;
+        padding: 14px 16px;
+        border: 1px solid #d6e0ea;
+        border-radius: 14px;
+        background: #f8fbfe;
+        color: #587085;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <section class="hero">
+        <div>
+          <div class="tag">MVP Prototype</div>
+          <h1>通用 Agent 平台页面原型</h1>
+          <p>
+            这是一版独立 HTML 原型，用于先确认页面布局、模块区块和主流程。
+            当前不接后端接口，不进入正式前端工程实现。
+          </p>
+        </div>
+        <div class="hero-note">范围：登录、Dashboard、Agent / Tool / Workflow / Prompt / 用户/角色/Agent 权限 / 会话页</div>
+      </section>
+
+      <section class="grid">
+        <article class="card full">
+          <div class="card-header">
+            <div class="num">01</div>
+            <h2>登录页</h2>
+          </div>
+          <div class="frame login">
+            <div class="login-brand">
+              <div class="logo"></div>
+              <h3>通用 Agent 平台</h3>
+              <p>统一入口，连接 Registry Center 与 Agent Core。</p>
+              <ul>
+                <li>统一认证</li>
+                <li>统一资源管理</li>
+                <li>统一执行入口</li>
+              </ul>
+            </div>
+            <div class="login-form">
+              <div>
+                <div class="field-label">用户名</div>
+                <div class="input"></div>
+              </div>
+              <div>
+                <div class="field-label">密码</div>
+                <div class="input"></div>
+              </div>
+              <div class="inline">
+                <span>记住我</span>
+                <span>DEV 环境</span>
+              </div>
+              <div class="btn-row">
+                <button class="btn primary">登录</button>
+                <button class="btn ghost">重置</button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <div class="num">02</div>
+            <h2>首页 Dashboard</h2>
+          </div>
+          <div class="frame app">
+            <aside class="sidebar">
+              <strong>导航</strong>
+              <ul>
+                <li class="active">首页</li>
+                <li>Agent 管理</li>
+                <li>Tool 管理</li>
+                <li>Workflow 管理</li>
+                <li>Prompt 管理</li>
+                <li>权限管理</li>
+                <li>会话页</li>
+              </ul>
+            </aside>
+            <div class="content">
+              <div class="topbar">
+                <div>欢迎回来，平台管理员</div>
+                <div>DEV / zc</div>
+              </div>
+              <div class="stats">
+                <div class="stat"><div class="stat-value">12</div><div class="stat-label">Agent 总数</div></div>
+                <div class="stat"><div class="stat-value">28</div><div class="stat-label">Tool 总数</div></div>
+                <div class="stat"><div class="stat-value">9</div><div class="stat-label">Workflow 总数</div></div>
+                <div class="stat"><div class="stat-value">16</div><div class="stat-label">Prompt 总数</div></div>
+                <div class="stat"><div class="stat-value">18</div><div class="stat-label">用户总数</div></div>
+                <div class="stat"><div class="stat-value">5</div><div class="stat-label">角色总数</div></div>
+              </div>
+              <div class="quick">
+                <div class="quick-card">进入 Agent</div>
+                <div class="quick-card">进入 Tool</div>
+                <div class="quick-card">进入 Workflow</div>
+                <div class="quick-card">进入 Prompt</div>
+                <div class="quick-card">权限管理</div>
+                <div class="quick-card">开始会话</div>
+              </div>
+              <div class="panel">
+                <div class="panel-title">最近会话</div>
+                <div class="lines"><span></span><span></span><span></span><span></span></div>
+              </div>
+            </div>
+            <div class="drawer">
+              <div class="panel-title">右上角用户区</div>
+              <div class="drawer-lines"><span></span><span></span><span></span></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <div class="num">03</div>
+            <h2>Agent 管理页</h2>
+          </div>
+          <div class="frame app">
+            <aside class="sidebar">
+              <strong>注册中心</strong>
+              <ul>
+                <li class="active">Agent</li>
+                <li>Tool</li>
+                <li>Workflow</li>
+                <li>Prompt</li>
+                <li>权限</li>
+              </ul>
+            </aside>
+            <div class="content">
+              <div class="toolbar">
+                <div class="chips">
+                  <span class="chip">agentName</span>
+                  <span class="chip">agentCode</span>
+                  <span class="chip">status</span>
+                </div>
+                <button class="btn primary">新建 Agent</button>
+              </div>
+              <div class="table">
+                <div class="table-head cols-6"><span>名称</span><span>编码</span><span>版本</span><span>状态</span><span>更新时间</span><span>操作</span></div>
+                <div class="table-row cols-6"><span>Agent 1</span><span>agent_code_1</span><span>v1.0</span><span><em class="status on">启用</em></span><span>2026-06-04</span><span>查看 / 编辑 / 进入会话</span></div>
+                <div class="table-row cols-6"><span>Agent 2</span><span>agent_code_2</span><span>v1.0</span><span><em class="status on">启用</em></span><span>2026-06-04</span><span>查看 / 编辑 / 进入会话</span></div>
+                <div class="table-row cols-6"><span>Agent 3</span><span>agent_code_3</span><span>v1.0</span><span><em class="status on">启用</em></span><span>2026-06-04</span><span>查看 / 编辑 / 进入会话</span></div>
+              </div>
+            </div>
+            <div class="drawer">
+              <div class="panel-title">新增 / 编辑 Agent</div>
+              <div class="drawer-lines"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <div class="num">04</div>
+            <h2>Tool 管理页</h2>
+          </div>
+          <div class="frame app">
+            <aside class="sidebar">
+              <strong>注册中心</strong>
+              <ul>
+                <li>Agent</li>
+                <li class="active">Tool</li>
+                <li>Workflow</li>
+                <li>Prompt</li>
+                <li>权限</li>
+              </ul>
+            </aside>
+            <div class="content">
+              <div class="toolbar">
+                <div class="chips">
+                  <span class="chip">toolName</span>
+                  <span class="chip">toolCode</span>
+                  <span class="chip">enabled</span>
+                </div>
+                <button class="btn primary">新建 Tool</button>
+              </div>
+              <div class="table">
+                <div class="table-head cols-6"><span>名称</span><span>编码</span><span>权限</span><span>超时</span><span>状态</span><span>操作</span></div>
+                <div class="table-row cols-6"><span>Tool 1</span><span>tool_code_1</span><span>read-only</span><span>30s</span><span><em class="status on">启用</em></span><span>查看 / 编辑 / 停用</span></div>
+                <div class="table-row cols-6"><span>Tool 2</span><span>tool_code_2</span><span>read-only</span><span>30s</span><span><em class="status on">启用</em></span><span>查看 / 编辑 / 停用</span></div>
+                <div class="table-row cols-6"><span>Tool 3</span><span>tool_code_3</span><span>read-only</span><span>30s</span><span><em class="status on">启用</em></span><span>查看 / 编辑 / 停用</span></div>
+              </div>
+            </div>
+            <div class="drawer">
+              <div class="panel-title">Tool 配置表单</div>
+              <div class="drawer-lines"><span></span><span></span><span></span><span></span><span></span></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <div class="num">05</div>
+            <h2>Workflow 管理页</h2>
+          </div>
+          <div class="frame workflow">
+            <div class="pane">
+              <div class="toolbar">
+                <div class="chips"><span class="chip">workflowName</span><span class="chip">status</span></div>
+                <button class="btn primary">新建 Workflow</button>
+              </div>
+              <div class="table" style="margin-top: 16px;">
+                <div class="table-head cols-4"><span>名称</span><span>版本</span><span>状态</span><span>操作</span></div>
+                <div class="table-row cols-4"><span>Workflow 1</span><span>v1.0</span><span><em class="status draft">草稿</em></span><span>查看 / 发布</span></div>
+                <div class="table-row cols-4"><span>Workflow 2</span><span>v1.0</span><span><em class="status draft">草稿</em></span><span>查看 / 发布</span></div>
+                <div class="table-row cols-4"><span>Workflow 3</span><span>v1.0</span><span><em class="status draft">草稿</em></span><span>查看 / 发布</span></div>
+              </div>
+            </div>
+            <div class="pane border-left">
+              <div class="panel-title">流程预览</div>
+              <div class="nodes">
+                <div class="node start">Start</div>
+                <div class="node">Tool</div>
+                <div class="node condition">Condition</div>
+                <div class="node">Tool</div>
+                <div class="node end">End</div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <div class="num">06</div>
+            <h2>Prompt 管理页</h2>
+          </div>
+          <div class="frame prompt">
+            <div class="prompt-list">
+              <div class="panel-title">Prompt 列表</div>
+              <div class="prompt-item active">默认助手 Prompt</div>
+              <div class="prompt-item">高考填报 Prompt</div>
+              <div class="prompt-item">GitHub 分析 Prompt</div>
+              <div class="prompt-item">文档分析 Prompt</div>
+            </div>
+            <div class="editor">
+              <div class="panel-title">Prompt 编辑器</div>
+              <div class="editor-meta">
+                <span class="chip">promptCode</span>
+                <span class="chip">version</span>
+                <span class="chip">status</span>
+              </div>
+              <div class="editor-area">这里展示 Prompt 模板正文、变量说明、适用场景、版本描述。</div>
+              <div class="btn-row" style="justify-content: flex-end; margin-top: 14px;">
+                <button class="btn ghost">保存草稿</button>
+                <button class="btn primary">发布</button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <div class="num">07</div>
+            <h2>权限管理页</h2>
+          </div>
+          <div class="frame workflow">
+            <div class="pane">
+              <div class="toolbar">
+                <div class="chips">
+                  <span class="chip">用户管理</span>
+                  <span class="chip">角色管理</span>
+                </div>
+                <button class="btn primary">新建用户</button>
+              </div>
+              <div class="table" style="margin-top: 16px;">
+                <div class="table-head cols-4"><span>用户名</span><span>账号</span><span>状态</span><span>操作</span></div>
+                <div class="table-row cols-4"><span>张晨</span><span>zc</span><span><em class="status on">启用</em></span><span>查看详情 / 绑定角色</span></div>
+                <div class="table-row cols-4"><span>运营同学</span><span>operator</span><span><em class="status on">启用</em></span><span>查看详情 / 绑定角色</span></div>
+                <div class="table-row cols-4"><span>访客用户</span><span>guest</span><span><em class="status draft">停用</em></span><span>查看详情</span></div>
+              </div>
+            </div>
+            <div class="pane border-left">
+              <div class="panel-title">当前用户详情</div>
+              <div class="table" style="margin-top: 12px;">
+                <div class="table-head cols-3"><span>已绑定角色</span><span>后台范围</span><span>操作</span></div>
+                <div class="table-row cols-3"><span>平台管理员</span><span>全部管理页 + 会话页</span><span>移除</span></div>
+                <div class="table-row cols-3"><span>运营角色</span><span>部分管理页 + 会话页</span><span>移除</span></div>
+              </div>
+              <div class="panel" style="margin-top: 16px;">
+                <div class="panel-title">切换到角色管理后</div>
+                <div class="drawer-lines"><span></span><span></span><span></span><span></span></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card full">
+          <div class="card-header">
+            <div class="num">08</div>
+            <h2>会话页</h2>
+          </div>
+          <div class="frame chat">
+            <div class="chat-list">
+              <div class="panel-title">会话列表</div>
+              <div class="chat-item active">高考填报咨询</div>
+              <div class="chat-item">Workflow 调试</div>
+              <div class="chat-item">Prompt 试运行</div>
+              <div class="btn-row" style="margin-top: 14px;">
+                <button class="btn primary" style="width: 100%;">新建会话</button>
+              </div>
+            </div>
+            <div class="chat-main">
+              <div class="chat-topbar">
+                <div><strong>当前 Agent：</strong>高考填报 Agent</div>
+                <div><strong>会话规则：</strong>创建后固定 Agent</div>
+              </div>
+              <div class="messages">
+                <div class="message user">我的分数 620，想看计算机相关院校建议。</div>
+                <div class="message bot">已为你准备候选院校列表，下一步将调用 Tool 检索分数区间。</div>
+                <div class="message bot subtle">轻量执行反馈：处理中 -&gt; 已返回结果</div>
+              </div>
+              <div class="chat-input">
+                <div class="textarea">输入问题。若从首页进入且未选择 Agent，则先选择 Agent 再发送。</div>
+                <div class="btn-row" style="justify-content: flex-end;">
+                  <button class="btn ghost">清空</button>
+                  <button class="btn primary">发送</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+    </div>
+  </body>
+</html>

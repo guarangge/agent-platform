@@ -1,0 +1,21 @@
+name: agent-platform
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: agent-postgres
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?请先生成并配置本地 .env}
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - agent_postgres_data:/var/lib/postgresql/data
+      - ./postgres/init-databases.sql:/docker-entrypoint-initdb.d/01-agent-databases.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d postgres"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+volumes:
+  agent_postgres_data:

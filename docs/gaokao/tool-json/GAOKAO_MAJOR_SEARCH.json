@@ -1,0 +1,99 @@
+{
+  "toolCode": "GAOKAO_MAJOR_SEARCH",
+  "toolName": "高考专业检索",
+  "toolType": "search",
+  "toolCategory": "education",
+  "description": "结合专业兴趣、选科和分数，从内置专业样例库中筛选推荐专业方向。",
+  "providerCode": "internal_platform_provider",
+  "providerName": "平台内置 Provider",
+  "providerType": "internal",
+  "transportType": "in_process",
+  "providerConfigSchema": {},
+  "providerStatus": "enabled",
+  "providerInstanceCode": "internal_platform_default",
+  "providerInstanceName": "平台内置默认实例",
+  "environmentCode": "default",
+  "endpoint": "",
+  "authType": "none",
+  "authConfig": {},
+  "headers": {},
+  "providerTimeoutSeconds": 30,
+  "retryTimes": 0,
+  "providerInstanceStatus": "enabled",
+  "operationName": "GAOKAO_MAJOR_SEARCH",
+  "operationType": "internal_method",
+  "bindingStatus": "enabled",
+  "invokeConfig": {},
+  "argumentMapping": {},
+  "outputMapping": {},
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "subjectType": {
+        "type": "string"
+      },
+      "score": {
+        "type": "number"
+      },
+      "preferredMajor": {
+        "type": "string"
+      },
+      "userMessage": {
+        "type": "string"
+      }
+    }
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "profile": {
+        "type": "object"
+      },
+      "majors": {
+        "type": "array"
+      }
+    }
+  },
+  "permissionLevel": "default",
+  "timeoutSeconds": 30,
+  "status": "enabled",
+  "metadata": {
+    "promptRefs": {
+      "executionPromptId": 34
+    },
+    "routing": {
+      "capabilities": [
+        "匹配专业方向",
+        "结合选科要求筛专业",
+        "输出专业描述和就业方向"
+      ],
+      "triggerConditions": [
+        "用户询问适合哪些专业",
+        "用户说想学计算机、法学、医学等方向",
+        "用户希望先定专业再定学校"
+      ],
+      "limitations": [
+        "样例库不是完整专业库",
+        "参考分仅作方向性提示"
+      ],
+      "inputPrerequisites": [
+        "最好有选科和专业偏好"
+      ],
+      "sideEffects": "只读检索",
+      "riskNotes": [
+        "热门专业竞争强，建议结合院校层次综合判断"
+      ]
+    },
+    "guardrails": {
+      "blockedKeywords": [],
+      "maxInputLength": 5000
+    },
+    "approval": {
+      "required": false,
+      "mode": "always",
+      "keywords": [],
+      "reason": ""
+    }
+  },
+  "remark": "高考专业方向筛选 Tool"
+}

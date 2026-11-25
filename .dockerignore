@@ -1,0 +1,21 @@
+.git
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+**/node_modules
+**/target
+**/dist
+.runtime
+output
+backups
+*.dump
+
+# Python tooling
+__pycache__/
+*.py[cod]

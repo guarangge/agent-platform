@@ -1,0 +1,11 @@
+{
+  "pluginCode": "image-understanding-plugin",
+  "version": "0.0.1-SNAPSHOT",
+  "platformApiVersion": "1",
+  "entrypoint": "com.zc.agent.plugin.image.ImageAgentRuntimePlugin",
+  "capabilities": [],
+  "dependencies": [],
+  "components": {
+    "tools": ["IMAGE_OCR", "IMAGE_LAYOUT_ANALYZE"]
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "toolCode": "GAOKAO_POLICY_SEARCH",
+  "toolName": "高考政策检索",
+  "toolType": "knowledge",
+  "toolCategory": "education",
+  "description": "检索内置高考政策知识库，回答平行志愿、调剂、专业组和选科要求等问题。",
+  "providerCode": "internal_platform_provider",
+  "providerName": "平台内置 Provider",
+  "providerType": "internal",
+  "transportType": "in_process",
+  "providerConfigSchema": {},
+  "providerStatus": "enabled",
+  "providerInstanceCode": "internal_platform_default",
+  "providerInstanceName": "平台内置默认实例",
+  "environmentCode": "default",
+  "endpoint": "",
+  "authType": "none",
+  "authConfig": {},
+  "headers": {},
+  "providerTimeoutSeconds": 30,
+  "retryTimes": 0,
+  "providerInstanceStatus": "enabled",
+  "operationName": "GAOKAO_POLICY_SEARCH",
+  "operationType": "internal_method",
+  "bindingStatus": "enabled",
+  "invokeConfig": {},
+  "argumentMapping": {},
+  "outputMapping": {},
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "query": {
+        "type": "string"
+      },
+      "province": {
+        "type": "string"
+      }
+    }
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "profile": {
+        "type": "object"
+      },
+      "policies": {
+        "type": "array"
+      }
+    }
+  },
+  "permissionLevel": "default",
+  "timeoutSeconds": 30,
+  "status": "enabled",
+  "metadata": {
+    "promptRefs": {
+      "executionPromptId": 41
+    },
+    "routing": {
+      "capabilities": [
+        "检索高考政策条目",
+        "解释平行志愿和调剂规则",
+        "提醒省份差异和时效性风险"
+      ],
+      "triggerConditions": [
+        "用户问平行志愿是什么意思",
+        "用户问服从调剂会怎样",
+        "用户问专业组或选科要求"
+      ],
+      "limitations": [
+        "内置知识库覆盖有限",
+        "最终以目标省份官方文件为准"
+      ],
+      "inputPrerequisites": [
+        "最好提供省份或政策主题"
+      ],
+      "sideEffects": "只读检索",
+      "riskNotes": [
+        "政策存在年度变化"
+      ]
+    },
+    "guardrails": {
+      "blockedKeywords": [],
+      "maxInputLength": 5000
+    },
+    "approval": {
+      "required": false,
+      "mode": "always",
+      "keywords": [],
+      "reason": ""
+    }
+  },
+  "remark": "高考政策问答核心 Tool"
+}

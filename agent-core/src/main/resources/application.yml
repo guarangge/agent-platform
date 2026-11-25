@@ -1,0 +1,134 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: agent-core
+  servlet:
+    multipart:
+      max-file-size: ${CORE_ATTACHMENT_MAX_FILE_SIZE:10MB}
+      max-request-size: ${CORE_ATTACHMENT_MAX_REQUEST_SIZE:12MB}
+  mvc:
+    async:
+      request-timeout: ${CORE_ASYNC_REQUEST_TIMEOUT:15m}
+  datasource:
+    url: ${AGENT_CORE_DB_URL:jdbc:postgresql://localhost:5432/agent_core}
+    username: ${AGENT_CORE_DB_USERNAME:postgres}
+    password: ${AGENT_CORE_DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  sql:
+    init:
+      mode: never
+      encoding: UTF-8
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+    baseline-version: 2026071500
+    baseline-description: legacy-agent-core-schema
+    validate-on-migrate: true
+    clean-disabled: true
+
+management:
+  tracing:
+    sampling:
+      probability: ${MANAGEMENT_TRACING_SAMPLING_PROBABILITY:1.0}
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+
+core:
+  attachment:
+    storage-root: ${CORE_ATTACHMENT_STORAGE_ROOT:${java.io.tmpdir}/agent-attachments}
+    max-file-bytes: ${CORE_ATTACHMENT_MAX_FILE_BYTES:10485760}
+    allowed-mime-types:
+      - image/jpeg
+      - image/png
+      - image/webp
+  runtime:
+    plugin:
+      environment-code: ${CORE_RUNTIME_PLUGIN_ENVIRONMENT_CODE:default}
+    kernel:
+      enabled: ${CORE_AGENT_LOOP_KERNEL_ENABLED:false}
+      rollout-percent: ${CORE_AGENT_LOOP_KERNEL_ROLLOUT_PERCENT:0}
+      agent-ids: ${CORE_AGENT_LOOP_KERNEL_AGENT_IDS:}
+      project-ids: ${CORE_AGENT_LOOP_KERNEL_PROJECT_IDS:}
+    interactive-loop:
+      enabled: ${CORE_INTERACTIVE_LOOP_ENABLED:false}
+      kill-switch: ${CORE_INTERACTIVE_LOOP_KILL_SWITCH:false}
+      rollout-percent: ${CORE_INTERACTIVE_LOOP_ROLLOUT_PERCENT:0}
+      agent-ids: ${CORE_INTERACTIVE_LOOP_AGENT_IDS:}
+      project-ids: ${CORE_INTERACTIVE_LOOP_PROJECT_IDS:}
+    replay:
+      enabled: ${CORE_REPLAY_ENABLED:true}
+      prompt-enabled: ${CORE_REPLAY_PROMPT_ENABLED:true}
+      simulation-enabled: ${CORE_REPLAY_SIMULATION_ENABLED:true}
+      rollout-percent: ${CORE_REPLAY_ROLLOUT_PERCENT:100}
+      agent-ids: ${CORE_REPLAY_AGENT_IDS:}
+      project-ids: ${CORE_REPLAY_PROJECT_IDS:}
+    wait:
+      webhook-secret: ${CORE_WAIT_WEBHOOK_SECRET}
+      webhook-clock-skew-seconds: ${CORE_WAIT_WEBHOOK_CLOCK_SKEW_SECONDS:300}
+    worker:
+      concurrency: ${CORE_RUN_WORKER_CONCURRENCY:4}
+      poll-delay-ms: ${CORE_RUN_WORKER_POLL_DELAY_MS:1000}
+      lease-seconds: ${CORE_RUN_WORKER_LEASE_SECONDS:900}
+      max-attempts: ${CORE_RUN_WORKER_MAX_ATTEMPTS:2}
+      claim-batch-size: ${CORE_RUN_WORKER_CLAIM_BATCH_SIZE:4}
+      queue-capacity: ${CORE_RUN_QUEUE_CAPACITY:1000}
+      per-user-queue-capacity: ${CORE_RUN_PER_USER_QUEUE_CAPACITY:100}
+      global-concurrency: ${CORE_RUN_GLOBAL_CONCURRENCY:32}
+      default-priority: ${CORE_RUN_DEFAULT_PRIORITY:50}
+      max-priority: ${CORE_RUN_MAX_PRIORITY:100}
+      aging-seconds: ${CORE_RUN_PRIORITY_AGING_SECONDS:60}
+      retry-initial-seconds: ${CORE_RUN_RETRY_INITIAL_SECONDS:2}
+      retry-max-seconds: ${CORE_RUN_RETRY_MAX_SECONDS:300}
+      recovery-interval-ms: ${CORE_RUN_RECOVERY_INTERVAL_MS:30000}
+      heartbeat-interval-ms: ${CORE_RUN_HEARTBEAT_INTERVAL_MS:30000}
+      shutdown-timeout-seconds: ${CORE_RUN_SHUTDOWN_TIMEOUT_SECONDS:60}
+      group-code: ${CORE_RUN_WORKER_GROUP_CODE:default}
+      group-name: ${CORE_RUN_WORKER_GROUP_NAME:默认 Worker 组}
+      instance-address: ${CORE_RUN_WORKER_INSTANCE_ADDRESS:${HOSTNAME:local}}
+      capabilities: ${CORE_RUN_WORKER_CAPABILITIES:}
+      node-offline-seconds: ${CORE_RUN_WORKER_NODE_OFFLINE_SECONDS:90}
+  registry:
+    base-url: ${REGISTRY_BASE_URL:http://localhost:8089/api/registry}
+    service-token: ${REGISTRY_RUNTIME_SERVICE_TOKEN}
+  security:
+    jwt-secret: ${CORE_JWT_SECRET}
+    allowed-origins: ${CORE_ALLOWED_ORIGINS:http://localhost:5173,http://127.0.0.1:5173,http://127.0.0.1:5179}
+  tools:
+    doc-search-root: ${DOC_SEARCH_ROOT:../docs}
+    mcp:
+      allowed-stdio-commands: ${CORE_TOOL_MCP_ALLOWED_STDIO_COMMANDS:mcp-server-filesystem,mcp-server-postgres,npx,node,uvx,docker}
+  memory:
+    llm:
+      enabled: ${CORE_MEMORY_LLM_ENABLED:false}
+      base-url: ${CORE_MEMORY_LLM_BASE_URL:https://api.openai.com/v1}
+      api-key: ${CORE_MEMORY_LLM_API_KEY:}
+      model: ${CORE_MEMORY_LLM_MODEL:gpt-4.1-mini}
+      temperature: ${CORE_MEMORY_LLM_TEMPERATURE:0.1}
+      timeout-seconds: ${CORE_MEMORY_LLM_TIMEOUT_SECONDS:20}
+  eval:
+    llm:
+      enabled: ${CORE_EVAL_LLM_ENABLED:false}
+      base-url: ${CORE_EVAL_LLM_BASE_URL:https://api.openai.com/v1}
+      api-key: ${CORE_EVAL_LLM_API_KEY:}
+      model: ${CORE_EVAL_LLM_MODEL:gpt-4.1-mini}
+      temperature: ${CORE_EVAL_LLM_TEMPERATURE:0.1}
+      max-tokens: ${CORE_EVAL_LLM_MAX_TOKENS:1024}
+      timeout-seconds: ${CORE_EVAL_LLM_TIMEOUT_SECONDS:20}
+  sandbox:
+    docker-host: ${CORE_SANDBOX_DOCKER_HOST:unix:///var/run/docker.sock}
+    node-id: ${CORE_SANDBOX_NODE_ID:${HOSTNAME:local}}
+    workspace-root: ${CORE_SANDBOX_WORKSPACE_ROOT:${java.io.tmpdir}/agent-sandbox}
+    host-workspace-root: ${CORE_SANDBOX_HOST_WORKSPACE_ROOT:}
+    default-image: ${CORE_SANDBOX_DEFAULT_IMAGE:agent-sandbox-runtime:1.0.0}
+    max-input-bytes: ${CORE_SANDBOX_MAX_INPUT_BYTES:10485760}
+    max-artifact-bytes: ${CORE_SANDBOX_MAX_ARTIFACT_BYTES:10485760}
+    cleanup-on-startup: ${CORE_SANDBOX_CLEANUP_ON_STARTUP:true}
+  agent-workspace:
+    root: ${CORE_AGENT_WORKSPACE_ROOT:${java.io.tmpdir}/agent-workspace}
+    max-file-bytes: ${CORE_AGENT_WORKSPACE_MAX_FILE_BYTES:1048576}
+    max-workspace-bytes: ${CORE_AGENT_WORKSPACE_MAX_TOTAL_BYTES:20971520}

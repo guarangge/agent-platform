@@ -1,0 +1,13 @@
+{
+  "agentCode": "gaokao_assistant",
+  "agentName": "高考志愿填报 Agent",
+  "description": "用于高考志愿分析、政策问答、院校专业筛选和冲稳保建议生成的教育类 Agent。",
+  "version": "v1.0",
+  "defaultModel": "gpt-4o-mini",
+  "defaultPromptId": 32,
+  "decisionPromptId": 33,
+  "plannerPromptId": 34,
+  "toolScopeMode": "custom",
+  "status": "enabled",
+  "remark": "高考志愿填报测试 Agent"
+}

@@ -1,0 +1,17 @@
+{
+  "pluginCode": "gaokao-tool-plugin",
+  "version": "0.0.1-SNAPSHOT",
+  "platformApiVersion": "1",
+  "entrypoint": "com.zc.agent.plugin.gaokao.GaokaoAgentRuntimePlugin",
+  "capabilities": [],
+  "dependencies": [],
+  "components": {
+    "tools": [
+      "SCORE_ANALYSIS",
+      "DOC_SEARCH",
+      "GAOKAO_POLICY_SEARCH",
+      "GAOKAO_UNIVERSITY_SEARCH",
+      "GAOKAO_MAJOR_SEARCH"
+    ]
+  }
+}

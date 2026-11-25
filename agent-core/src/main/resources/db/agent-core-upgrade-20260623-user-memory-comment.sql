@@ -1,0 +1,14 @@
+COMMENT ON TABLE user_memories IS '用户记忆表';
+COMMENT ON COLUMN user_memories.id IS '主键ID';
+COMMENT ON COLUMN user_memories.user_id IS '用户ID';
+COMMENT ON COLUMN user_memories.agent_id IS 'Agent ID，同一用户按Agent维度拆分记忆';
+COMMENT ON COLUMN user_memories.preference_summary IS '用户偏好摘要';
+COMMENT ON COLUMN user_memories.attention_summary IS '用户关注点摘要';
+COMMENT ON COLUMN user_memories.fact_summary IS '用户长期事实摘要';
+COMMENT ON COLUMN user_memories.goal_summary IS '用户长期目标摘要';
+COMMENT ON COLUMN user_memories.metadata IS '扩展信息';
+COMMENT ON COLUMN user_memories.created_at IS '创建时间';
+COMMENT ON COLUMN user_memories.created_by IS '创建人';
+COMMENT ON COLUMN user_memories.updated_at IS '更新时间';
+COMMENT ON COLUMN user_memories.updated_by IS '更新人';
+COMMENT ON COLUMN user_memories.is_deleted IS '逻辑删除标记';

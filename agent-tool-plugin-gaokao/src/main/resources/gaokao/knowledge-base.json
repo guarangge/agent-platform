@@ -1,0 +1,417 @@
+{
+  "policies": [
+    {
+      "policyCode": "national_parallel_volunteer",
+      "title": "平行志愿投档基本规则",
+      "province": "全国",
+      "category": "投档规则",
+      "keywords": ["平行志愿", "投档", "冲稳保", "批次"],
+      "summary": "平行志愿通常按成绩排序、遵循志愿顺序逐个检索投档，核心风险在于志愿顺序和梯度设置不合理。",
+      "content": "平行志愿的核心不是完全平行，而是按考生排序后根据志愿顺序依次检索，一旦符合投档条件通常只投出一次。",
+      "riskNotes": ["不同省份批次和细则存在差异", "必须以当年考试院文件为准"]
+    },
+    {
+      "policyCode": "major_adjustment_general",
+      "title": "服从专业调剂风险说明",
+      "province": "全国",
+      "category": "专业调剂",
+      "keywords": ["调剂", "服从调剂", "专业录取"],
+      "summary": "服从调剂可能提升被学校录取概率，但会增加进入非目标专业的可能性。",
+      "content": "是否服从调剂需要结合学校优先还是专业优先来判断；对强专业偏好的考生，不宜简单全量服从。",
+      "riskNotes": ["院校专业组和传统专业调剂规则并不完全相同", "部分学校专业调剂限制需单独核对"]
+    },
+    {
+      "policyCode": "new_gaokao_subject_requirement",
+      "title": "新高考选科要求核对要点",
+      "province": "全国",
+      "category": "选科要求",
+      "keywords": ["选科", "物理", "历史", "专业要求"],
+      "summary": "新高考场景下，院校专业通常会设置选科要求，填报前必须核对目标专业是否满足。",
+      "content": "同一学校不同专业组对选科要求可能不同，不能只看学校名，必须看专业组和专业要求。",
+      "riskNotes": ["选科不满足时即使分数足够也可能无法填报"]
+    },
+    {
+      "policyCode": "guangdong_parallel_reference",
+      "title": "广东本科批平行志愿填报提示",
+      "province": "广东",
+      "category": "地方规则",
+      "keywords": ["广东", "本科批", "平行志愿", "专业组"],
+      "summary": "广东高考填报中需要特别关注专业组、选科要求和省内外院校梯度配置。",
+      "content": "广东考生在本科批志愿安排上，建议同时考虑省内资源和省外性价比院校，并关注专业组约束。",
+      "riskNotes": ["专业组差异会影响可填范围", "不同年份投档位次会波动"]
+    }
+  ],
+  "universities": [
+    {
+      "universityCode": "SEU",
+      "name": "东南大学",
+      "province": "江苏",
+      "city": "南京",
+      "tier": "985",
+      "schoolType": "公办",
+      "tags": ["工科强校", "双一流", "电子信息", "建筑"],
+      "strongMajors": ["电子信息", "计算机", "自动化", "建筑学"],
+      "summary": "以工科见长，适合高分段、偏理工和城市资源导向考生。",
+      "admissionRules": [
+        {
+          "province": "广东",
+          "subjectType": "物理类",
+          "referenceScore": 646,
+          "referenceRank": 5200,
+          "adviceLevel": "sprint",
+          "note": "参考样例，需结合当年正式数据"
+        },
+        {
+          "province": "江苏",
+          "subjectType": "物理类",
+          "referenceScore": 641,
+          "referenceRank": 6100,
+          "adviceLevel": "balance",
+          "note": "参考样例，需结合当年正式数据"
+        }
+      ]
+    },
+    {
+      "universityCode": "NJUPT",
+      "name": "南京邮电大学",
+      "province": "江苏",
+      "city": "南京",
+      "tier": "双一流培育",
+      "schoolType": "公办",
+      "tags": ["通信", "电子信息", "计算机"],
+      "strongMajors": ["通信工程", "电子信息", "计算机", "软件工程"],
+      "summary": "信息类专业较强，适合看重电子信息和计算机方向的考生。",
+      "admissionRules": [
+        {
+          "province": "广东",
+          "subjectType": "物理类",
+          "referenceScore": 606,
+          "referenceRank": 21000,
+          "adviceLevel": "balance",
+          "note": "参考样例，需结合当年正式数据"
+        },
+        {
+          "province": "江苏",
+          "subjectType": "物理类",
+          "referenceScore": 602,
+          "referenceRank": 23000,
+          "adviceLevel": "balance",
+          "note": "参考样例，需结合当年正式数据"
+        }
+      ]
+    },
+    {
+      "universityCode": "NUAA",
+      "name": "南京航空航天大学",
+      "province": "江苏",
+      "city": "南京",
+      "tier": "211",
+      "schoolType": "公办",
+      "tags": ["航空航天", "计算机", "软件工程", "电子信息"],
+      "strongMajors": ["计算机", "软件工程", "人工智能", "电子信息"],
+      "summary": "工科基础扎实，计算机和软件工程在江苏考生中认可度较高。",
+      "admissionRules": [
+        {
+          "province": "江苏",
+          "subjectType": "物理类",
+          "referenceScore": 613,
+          "referenceRank": 16500,
+          "adviceLevel": "sprint",
+          "note": "参考样例，需结合当年正式数据"
+        }
+      ]
+    },
+    {
+      "universityCode": "SUDA",
+      "name": "苏州大学",
+      "province": "江苏",
+      "city": "苏州",
+      "tier": "211",
+      "schoolType": "公办",
+      "tags": ["苏州", "计算机", "人工智能", "综合"],
+      "strongMajors": ["计算机", "软件工程", "人工智能", "电子信息"],
+      "summary": "地缘优势明显，适合希望留在苏州且兼顾平台层次的考生。",
+      "admissionRules": [
+        {
+          "province": "江苏",
+          "subjectType": "物理类",
+          "referenceScore": 607,
+          "referenceRank": 19500,
+          "adviceLevel": "balance",
+          "note": "参考样例，需结合当年正式数据"
+        }
+      ]
+    },
+    {
+      "universityCode": "USTS",
+      "name": "苏州科技大学",
+      "province": "江苏",
+      "city": "苏州",
+      "tier": "省重点",
+      "schoolType": "公办",
+      "tags": ["苏州", "计算机", "软件工程", "应用型"],
+      "strongMajors": ["计算机", "软件工程", "数据科学", "电子信息"],
+      "summary": "适合作为苏州本地稳妥选择，计算机相关专业与城市就业结合度较高。",
+      "admissionRules": [
+        {
+          "province": "江苏",
+          "subjectType": "物理类",
+          "referenceScore": 587,
+          "referenceRank": 33500,
+          "adviceLevel": "safe",
+          "note": "参考样例，需结合当年正式数据"
+        }
+      ]
+    },
+    {
+      "universityCode": "JNU_WX",
+      "name": "江南大学",
+      "province": "江苏",
+      "city": "无锡",
+      "tier": "211",
+      "schoolType": "公办",
+      "tags": ["无锡", "计算机", "人工智能", "211"],
+      "strongMajors": ["计算机", "人工智能", "物联网工程", "电子信息"],
+      "summary": "无锡城市资源和211平台兼具，适合把无锡作为非偏远备选城市的考生。",
+      "admissionRules": [
+        {
+          "province": "江苏",
+          "subjectType": "物理类",
+          "referenceScore": 603,
+          "referenceRank": 22500,
+          "adviceLevel": "balance",
+          "note": "参考样例，需结合当年正式数据"
+        }
+      ]
+    },
+    {
+      "universityCode": "NTU",
+      "name": "南通大学",
+      "province": "江苏",
+      "city": "南通",
+      "tier": "省重点",
+      "schoolType": "公办",
+      "tags": ["南通", "计算机", "软件工程", "综合"],
+      "strongMajors": ["计算机", "软件工程", "电子信息", "数据科学"],
+      "summary": "适合作为江苏省内不偏远城市的保底补充院校。",
+      "admissionRules": [
+        {
+          "province": "江苏",
+          "subjectType": "物理类",
+          "referenceScore": 575,
+          "referenceRank": 43000,
+          "adviceLevel": "safe",
+          "note": "参考样例，需结合当年正式数据"
+        }
+      ]
+    },
+    {
+      "universityCode": "HDU",
+      "name": "杭州电子科技大学",
+      "province": "浙江",
+      "city": "杭州",
+      "tier": "省重点",
+      "schoolType": "公办",
+      "tags": ["电子信息", "计算机", "数字经济", "杭州"],
+      "strongMajors": ["计算机", "软件工程", "电子信息", "网络安全"],
+      "summary": "电子信息和计算机方向强，城市资源和就业连接较好。",
+      "admissionRules": [
+        {
+          "province": "广东",
+          "subjectType": "物理类",
+          "referenceScore": 592,
+          "referenceRank": 31000,
+          "adviceLevel": "balance",
+          "note": "参考样例，需结合当年正式数据"
+        }
+      ]
+    },
+    {
+      "universityCode": "NUIST",
+      "name": "南京信息工程大学",
+      "province": "江苏",
+      "city": "南京",
+      "tier": "双一流学科",
+      "schoolType": "公办",
+      "tags": ["气象", "计算机", "人工智能"],
+      "strongMajors": ["大气科学", "计算机", "人工智能", "电子信息"],
+      "summary": "气象特色鲜明，同时具备一定信息类专业优势。",
+      "admissionRules": [
+        {
+          "province": "广东",
+          "subjectType": "物理类",
+          "referenceScore": 585,
+          "referenceRank": 37000,
+          "adviceLevel": "balance",
+          "note": "参考样例，需结合当年正式数据"
+        }
+      ]
+    },
+    {
+      "universityCode": "SCNU",
+      "name": "华南师范大学",
+      "province": "广东",
+      "city": "广州",
+      "tier": "211",
+      "schoolType": "公办",
+      "tags": ["师范", "心理", "教育", "广州"],
+      "strongMajors": ["师范", "心理学", "教育技术", "汉语言"],
+      "summary": "省内认可度高，适合看重广州和师范教育方向的考生。",
+      "admissionRules": [
+        {
+          "province": "广东",
+          "subjectType": "历史类",
+          "referenceScore": 594,
+          "referenceRank": 5100,
+          "adviceLevel": "balance",
+          "note": "参考样例，需结合当年正式数据"
+        },
+        {
+          "province": "广东",
+          "subjectType": "物理类",
+          "referenceScore": 602,
+          "referenceRank": 24000,
+          "adviceLevel": "balance",
+          "note": "参考样例，需结合当年正式数据"
+        }
+      ]
+    },
+    {
+      "universityCode": "JNU",
+      "name": "暨南大学",
+      "province": "广东",
+      "city": "广州",
+      "tier": "211",
+      "schoolType": "公办",
+      "tags": ["综合", "新闻传播", "经济管理", "广州"],
+      "strongMajors": ["新闻传播", "金融", "法学", "计算机"],
+      "summary": "综合型院校，就业城市和学科覆盖面较好。",
+      "admissionRules": [
+        {
+          "province": "广东",
+          "subjectType": "历史类",
+          "referenceScore": 606,
+          "referenceRank": 3500,
+          "adviceLevel": "sprint",
+          "note": "参考样例，需结合当年正式数据"
+        },
+        {
+          "province": "广东",
+          "subjectType": "物理类",
+          "referenceScore": 610,
+          "referenceRank": 18500,
+          "adviceLevel": "balance",
+          "note": "参考样例，需结合当年正式数据"
+        }
+      ]
+    },
+    {
+      "universityCode": "SZU",
+      "name": "深圳大学",
+      "province": "广东",
+      "city": "深圳",
+      "tier": "省重点",
+      "schoolType": "公办",
+      "tags": ["深圳", "计算机", "电子信息", "城市资源"],
+      "strongMajors": ["计算机", "软件工程", "电子信息", "金融科技"],
+      "summary": "城市资源强，适合看重深圳和就业机会的考生。",
+      "admissionRules": [
+        {
+          "province": "广东",
+          "subjectType": "物理类",
+          "referenceScore": 608,
+          "referenceRank": 19800,
+          "adviceLevel": "balance",
+          "note": "参考样例，需结合当年正式数据"
+        },
+        {
+          "province": "广东",
+          "subjectType": "历史类",
+          "referenceScore": 598,
+          "referenceRank": 4500,
+          "adviceLevel": "balance",
+          "note": "参考样例，需结合当年正式数据"
+        }
+      ]
+    }
+  ],
+  "majors": [
+    {
+      "majorCode": "CS",
+      "name": "计算机类",
+      "category": "工学",
+      "tags": ["计算机", "软件", "编程", "互联网"],
+      "recommendedSubjects": ["物理类", "理科", "物化生", "物化地", "物生地"],
+      "referenceScoreMin": 590,
+      "description": "适合逻辑能力较强、愿意持续学习技术栈和工程实践的考生。",
+      "careerDirections": ["软件开发", "算法工程", "测试", "数据平台"],
+      "riskNotes": ["热门专业竞争激烈", "部分院校培养差异较大"]
+    },
+    {
+      "majorCode": "EE",
+      "name": "电子信息类",
+      "category": "工学",
+      "tags": ["电子信息", "通信", "芯片", "硬件"],
+      "recommendedSubjects": ["物理类", "理科", "物化生", "物化地"],
+      "referenceScoreMin": 580,
+      "description": "适合偏理工、希望进入通信、芯片、硬件和智能设备领域的考生。",
+      "careerDirections": ["通信工程", "嵌入式", "芯片设计", "硬件研发"],
+      "riskNotes": ["不同学校课程方向差异大"]
+    },
+    {
+      "majorCode": "AI",
+      "name": "人工智能",
+      "category": "工学",
+      "tags": ["人工智能", "算法", "计算机", "数据"],
+      "recommendedSubjects": ["物理类", "理科", "物化生", "物化地"],
+      "referenceScoreMin": 600,
+      "description": "适合数学基础较好、愿意投入算法和数据学习的考生。",
+      "careerDirections": ["算法工程", "数据分析", "机器学习工程"],
+      "riskNotes": ["部分院校名称新但课程体系未必成熟"]
+    },
+    {
+      "majorCode": "CLINICAL",
+      "name": "临床医学",
+      "category": "医学",
+      "tags": ["医学", "医院", "临床"],
+      "recommendedSubjects": ["物理类", "理科", "物化生"],
+      "referenceScoreMin": 620,
+      "description": "适合能接受长培养周期、稳定投入和职业门槛较高的考生。",
+      "careerDirections": ["临床医生", "住院医师规范化培训"],
+      "riskNotes": ["培养周期长", "学业压力大"]
+    },
+    {
+      "majorCode": "LAW",
+      "name": "法学",
+      "category": "法学",
+      "tags": ["法学", "法律", "司法"],
+      "recommendedSubjects": ["历史类", "文科", "不限"],
+      "referenceScoreMin": 575,
+      "description": "适合阅读表达和逻辑分析能力较强的考生。",
+      "careerDirections": ["律师", "法务", "公务员", "司法考试方向"],
+      "riskNotes": ["就业分化明显", "院校平台差异较大"]
+    },
+    {
+      "majorCode": "FINANCE",
+      "name": "金融学",
+      "category": "经济学",
+      "tags": ["金融", "经济", "投资"],
+      "recommendedSubjects": ["历史类", "物理类", "文科", "理科"],
+      "referenceScoreMin": 580,
+      "description": "适合对经济、商业和数据敏感的考生。",
+      "careerDirections": ["银行", "证券", "投研", "风控"],
+      "riskNotes": ["城市和院校平台影响较大"]
+    },
+    {
+      "majorCode": "CHINESE_EDU",
+      "name": "汉语言文学（师范）",
+      "category": "文学",
+      "tags": ["师范", "语文", "教育"],
+      "recommendedSubjects": ["历史类", "文科", "不限"],
+      "referenceScoreMin": 560,
+      "description": "适合有教师职业倾向和较强表达能力的考生。",
+      "careerDirections": ["中小学教师", "教育培训", "编辑出版"],
+      "riskNotes": ["就业方向相对集中"]
+    }
+  ]
+}

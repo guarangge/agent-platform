@@ -1,0 +1,105 @@
+{
+  "toolCode": "GAOKAO_UNIVERSITY_SEARCH",
+  "toolName": "高考院校检索",
+  "toolType": "search",
+  "toolCategory": "education",
+  "description": "基于省份、分数、位次、城市偏好和专业方向，从内置样例库中筛选候选院校。",
+  "providerCode": "internal_platform_provider",
+  "providerName": "平台内置 Provider",
+  "providerType": "internal",
+  "transportType": "in_process",
+  "providerConfigSchema": {},
+  "providerStatus": "enabled",
+  "providerInstanceCode": "internal_platform_default",
+  "providerInstanceName": "平台内置默认实例",
+  "environmentCode": "default",
+  "endpoint": "",
+  "authType": "none",
+  "authConfig": {},
+  "headers": {},
+  "providerTimeoutSeconds": 30,
+  "retryTimes": 0,
+  "providerInstanceStatus": "enabled",
+  "operationName": "GAOKAO_UNIVERSITY_SEARCH",
+  "operationType": "internal_method",
+  "bindingStatus": "enabled",
+  "invokeConfig": {},
+  "argumentMapping": {},
+  "outputMapping": {},
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "province": {
+        "type": "string"
+      },
+      "score": {
+        "type": "number"
+      },
+      "rank": {
+        "type": "number"
+      },
+      "subjectType": {
+        "type": "string"
+      },
+      "preferredCity": {
+        "type": "string"
+      },
+      "userMessage": {
+        "type": "string"
+      }
+    }
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "profile": {
+        "type": "object"
+      },
+      "universities": {
+        "type": "array"
+      }
+    }
+  },
+  "permissionLevel": "default",
+  "timeoutSeconds": 30,
+  "status": "enabled",
+  "metadata": {
+    "promptRefs": {
+      "executionPromptId": 34
+    },
+    "routing": {
+      "capabilities": [
+        "筛选候选院校",
+        "返回院校层次、城市和强势专业",
+        "结合参考分给出匹配原因"
+      ],
+      "triggerConditions": [
+        "用户要求推荐学校",
+        "用户希望按地区或层次筛院校",
+        "用户想看冲稳保候选学校"
+      ],
+      "limitations": [
+        "样例库不是完整院校库",
+        "参考分仅作方向性判断"
+      ],
+      "inputPrerequisites": [
+        "最好有省份、分数或位次"
+      ],
+      "sideEffects": "只读检索",
+      "riskNotes": [
+        "建议结合最新官方录取数据复核"
+      ]
+    },
+    "guardrails": {
+      "blockedKeywords": [],
+      "maxInputLength": 5000
+    },
+    "approval": {
+      "required": false,
+      "mode": "always",
+      "keywords": [],
+      "reason": ""
+    }
+  },
+  "remark": "高考院校候选筛选 Tool"
+}

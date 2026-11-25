@@ -1,0 +1,117 @@
+{
+  "toolCode": "SCORE_ANALYSIS",
+  "toolName": "高考分数分析",
+  "toolType": "analysis",
+  "toolCategory": "education",
+  "description": "基于分数、省份、位次、选科和高考知识库做分析，知识库缺数据时自动回退 LLM 做方向性补充。",
+  "providerCode": "internal_platform_provider",
+  "providerName": "平台内置 Provider",
+  "providerType": "internal",
+  "transportType": "in_process",
+  "providerConfigSchema": {},
+  "providerStatus": "enabled",
+  "providerInstanceCode": "internal_platform_default",
+  "providerInstanceName": "平台内置默认实例",
+  "environmentCode": "default",
+  "endpoint": "",
+  "authType": "none",
+  "authConfig": {},
+  "headers": {},
+  "providerTimeoutSeconds": 30,
+  "retryTimes": 0,
+  "providerInstanceStatus": "enabled",
+  "operationName": "SCORE_ANALYSIS",
+  "operationType": "internal_method",
+  "bindingStatus": "enabled",
+  "invokeConfig": {},
+  "argumentMapping": {},
+  "outputMapping": {},
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "province": {
+        "type": "string"
+      },
+      "score": {
+        "type": "number"
+      },
+      "rank": {
+        "type": "number"
+      },
+      "subjectType": {
+        "type": "string"
+      },
+      "userMessage": {
+        "type": "string"
+      }
+    }
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "profile": {
+        "type": "object"
+      },
+      "level": {
+        "type": "string"
+      },
+      "suggestions": {
+        "type": "array"
+      },
+      "candidateUniversities": {
+        "type": "array"
+      },
+      "candidateMajors": {
+        "type": "array"
+      },
+      "knowledgeCoverageLow": {
+        "type": "boolean"
+      },
+      "llmFallback": {
+        "type": "object"
+      }
+    }
+  },
+  "permissionLevel": "default",
+  "timeoutSeconds": 30,
+  "status": "enabled",
+  "metadata": {
+    "promptRefs": {
+      "executionPromptId": 34
+    },
+    "routing": {
+      "capabilities": [
+        "分析高考分数和位次",
+        "结合知识库推荐院校和专业方向",
+        "知识库不足时回退 LLM 做方向性补充"
+      ],
+      "triggerConditions": [
+        "用户提供高考分数或位次",
+        "用户想先判断大致层级再做志愿推荐",
+        "用户询问冲稳保策略"
+      ],
+      "limitations": [
+        "不是官方实时录取数据库",
+        "LLM 回退只做方向性补充，不输出编造数据"
+      ],
+      "inputPrerequisites": [
+        "至少有分数，最好同时有省份、位次和选科"
+      ],
+      "sideEffects": "只读分析",
+      "riskNotes": [
+        "最终填报仍需结合当年官方分数线和位次数据"
+      ]
+    },
+    "guardrails": {
+      "blockedKeywords": [],
+      "maxInputLength": 5000
+    },
+    "approval": {
+      "required": false,
+      "mode": "always",
+      "keywords": [],
+      "reason": ""
+    }
+  },
+  "remark": "高考主分析 Tool"
+}

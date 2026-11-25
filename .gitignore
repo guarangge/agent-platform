@@ -1,0 +1,48 @@
+.DS_Store
+
+# Maven
+target/
+
+# Node
+node_modules/
+dist/
+test-results/
+playwright-report/
+*.tsbuildinfo
+frontend-web/src/**/*.js
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# Logs
+*.log
+.runtime/
+
+# OS
+Thumbs.db
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+!.env.*.example
+application-local.yml
+application-local.yaml
+application-local.properties
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+
+# Local output and backups
+output/
+backups/
+*.dump
+
+# Python tooling
+__pycache__/
+*.py[cod]

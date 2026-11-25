@@ -1,0 +1,8 @@
+export interface ResourcePrice { id:number;resourceType:string;resourceCode:string;inputPricePer1000:number;outputPricePer1000:number;unitPrice:number;currency:string;status:string;effectiveFrom:string;effectiveTo:string|null }
+export interface BudgetPolicy { id:number;policyCode:string;policyName:string;scopeType:string;scopeId:number;periodType:string;budgetAmount:number|null;llmTokenLimit:number|null;toolCallLimit:number|null;sandboxSecondLimit:number|null;delegationCallLimit:number|null;warningPercent:number;hardLimit:boolean;currency:string;priority:number;status:string;effectiveFrom:string;effectiveTo:string|null }
+export interface UsageSummary { amount:number;llmTokens:number;toolCalls:number;sandboxSeconds:number;delegationCalls:number;eventCount:number;unpricedEvents:number }
+export interface UsageEvent { id:number;eventCode:string;resourceType:string;resourceCode:string;provider:string|null;userId:number|null;agentId:number|null;conversationId:number|null;taskId:number|null;inputUnits:number;outputUnits:number;quantity:number;unit:string;amount:number;currency:string;pricingStatus:string;executionStatus:string;durationMs:number|null;occurredAt:string }
+export interface BudgetAlert { id:number;policyId:number;policyCode:string;policyName:string;alertType:string;metricType:string;currentValue:number;limitValue:number;usagePercent:number;status:string;message:string;triggeredAt:string }
+export interface CostDashboard { periodStart:string;periodEnd:string;projectUsage:UsageSummary;policies:Array<{policy:BudgetPolicy;usage:UsageSummary;metrics:Array<{metric:string;current:number;limit:number;usagePercent:number}>}> }
+export type PricePayload = Omit<ResourcePrice,"id">;
+export type BudgetPayload = Omit<BudgetPolicy,"id">;

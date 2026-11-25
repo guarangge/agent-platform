@@ -1,0 +1,71 @@
+server:
+  port: 8089
+
+spring:
+  application:
+    name: registry-center
+  datasource:
+    url: ${REGISTRY_DB_URL:jdbc:postgresql://localhost:5432/agent_registry_center}
+    username: ${REGISTRY_DB_USERNAME:postgres}
+    password: ${REGISTRY_DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  sql:
+    init:
+      mode: never
+      encoding: UTF-8
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+    baseline-version: 2026071500
+    baseline-description: legacy-registry-schema
+    validate-on-migrate: true
+    clean-disabled: true
+  servlet:
+    multipart:
+      max-file-size: ${REGISTRY_KNOWLEDGE_MAX_FILE_SIZE:20MB}
+      max-request-size: ${REGISTRY_KNOWLEDGE_MAX_REQUEST_SIZE:22MB}
+
+registry:
+  bootstrap:
+    admin-password: ${REGISTRY_BOOTSTRAP_ADMIN_PASSWORD:}
+  knowledge:
+    storage-root: ${REGISTRY_KNOWLEDGE_STORAGE_ROOT:${java.io.tmpdir}/agent-knowledge}
+    max-file-bytes: ${REGISTRY_KNOWLEDGE_MAX_FILE_BYTES:20971520}
+    pdf-ocr:
+      enabled: ${REGISTRY_KNOWLEDGE_PDF_OCR_ENABLED:true}
+      render-command: ${REGISTRY_KNOWLEDGE_PDF_OCR_RENDER_COMMAND:pdftoppm}
+      command: ${REGISTRY_KNOWLEDGE_PDF_OCR_COMMAND:tesseract}
+      languages: ${REGISTRY_KNOWLEDGE_PDF_OCR_LANGUAGES:chi_sim+eng}
+      dpi: ${REGISTRY_KNOWLEDGE_PDF_OCR_DPI:240}
+      page-timeout-seconds: ${REGISTRY_KNOWLEDGE_PDF_OCR_PAGE_TIMEOUT_SECONDS:60}
+    docx-ocr:
+      enabled: ${REGISTRY_KNOWLEDGE_DOCX_OCR_ENABLED:true}
+      command: ${REGISTRY_KNOWLEDGE_DOCX_OCR_COMMAND:tesseract}
+      languages: ${REGISTRY_KNOWLEDGE_DOCX_OCR_LANGUAGES:chi_sim+eng}
+      image-timeout-seconds: ${REGISTRY_KNOWLEDGE_DOCX_OCR_IMAGE_TIMEOUT_SECONDS:60}
+      max-images: ${REGISTRY_KNOWLEDGE_DOCX_OCR_MAX_IMAGES:100}
+  agent-core:
+    base-url: ${AGENT_CORE_BASE_URL:http://localhost:8081/api/core}
+    service-token: ${REGISTRY_RUNTIME_SERVICE_TOKEN}
+  runtime:
+    security:
+      service-token: ${REGISTRY_RUNTIME_SERVICE_TOKEN}
+  tools:
+    security:
+      encryption-key: ${REGISTRY_TOOL_ENCRYPTION_KEY}
+    discovery:
+      allowed-stdio-commands: ${REGISTRY_MCP_ALLOWED_STDIO_COMMANDS:mcp-server-filesystem,mcp-server-postgres,npx,node,uvx,docker}
+  security:
+    jwt-secret: ${REGISTRY_JWT_SECRET}
+    access-token-expire-seconds: 7200
+    allowed-origins: ${REGISTRY_ALLOWED_ORIGINS:http://localhost:5173,http://127.0.0.1:5173,http://127.0.0.1:5179}
+
+management:
+  tracing:
+    sampling:
+      probability: ${MANAGEMENT_TRACING_SAMPLING_PROBABILITY:1.0}
+  endpoints:
+    web:
+      exposure:
+        include: health,info
